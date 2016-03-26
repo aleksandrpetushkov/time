@@ -4,8 +4,14 @@
 class Time {
 
 public:
-	Time();
-	Time(int hours, int min, int sec, int msec);
+	Time()
+	{
+		_time = time(NULL);
+	}
+	Time(int hours, int min, int sec, int msec)
+	{
+		
+	}
 	Time addMSecs(int ms) const // порождает новый объект со сдвигом в миллисекундах
 	{
 		
@@ -47,5 +53,6 @@ public:
 		
 	}
 protected:
+	int _time;
 
-}
+};
