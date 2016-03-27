@@ -21,5 +21,7 @@ unsigned int main()
 	{
 		cout << "Ffff";
 	}
+		
+	k.currentTime();
 	cin.get();
 }

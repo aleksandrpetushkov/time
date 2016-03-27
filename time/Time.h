@@ -1,5 +1,6 @@
 #include <string>
 #include <time.h>
+#include <iostream>
 
 class Time {
 
@@ -153,7 +154,17 @@ public:
 	}
 	static Time currentTime() // возвращает текущее время
 	{
-		int tm = time(NULL);
+		Time result;
+		char buffer[9];
+		char* format = "%H %M %S";
+		time_t seconds = time(NULL);
+		std::tm* timeinfo = localtime(&seconds);
+		strftime(buffer, 80, format, timeinfo);
+		std::cout << buffer;
+		;
+
+		return result;
+
 	}
 
 	Time fromString(const std::string& str, const std::string & format)
@@ -263,6 +274,7 @@ public:
 	
 protected:
 	int _hours, _min, _sec, _msec;
+	std::ostringstream dfsd;
 	
 
 };
