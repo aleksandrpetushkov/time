@@ -1,13 +1,17 @@
 #include <string>
 #include <time.h>
 #include <iostream>
+#include <sstream>
 
 class Time {
 
 public:
 	Time()
 	{
-		
+		_hours = 0;
+		_min = 0;
+		_sec = 0;
+		_msec = 0;
 	}
 	Time(int const hours, int const min, int const sec, int const msec)
 	{
@@ -159,9 +163,20 @@ public:
 		char* format = "%H %M %S";
 		time_t seconds = time(NULL);
 		std::tm* timeinfo = localtime(&seconds);
-		strftime(buffer, 80, format, timeinfo);
-		std::cout << buffer;
-		;
+		strftime(buffer, 9, format, timeinfo);
+		std::string s = buffer;
+		char  pos(0), pos1(0);
+		pos = s.find_first_of("123456789", 0);
+		pos1 = s.find_first_not_of("1234567890", pos);
+		result._hours = atoi(s.substr(pos, pos1 - pos).c_str());
+
+		pos = pos = s.find_first_of("123456789", pos1);
+		pos1 = s.find_first_not_of("1234567890", pos);
+		result._min= atoi(s.substr(pos, pos1 - pos).c_str());
+
+		pos = pos = s.find_first_of("123456789", pos1);
+		pos1 = s.find_first_not_of("1234567890", pos);
+		result._sec = atoi(s.substr(pos, pos1 - pos).c_str());
 
 		return result;
 
@@ -274,7 +289,6 @@ public:
 	
 protected:
 	int _hours, _min, _sec, _msec;
-	std::ostringstream dfsd;
 	
 
 };
