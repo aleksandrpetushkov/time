@@ -27,7 +27,9 @@ public:
 	}
 	Time addMSecs(int ms) const // порождает новый объект со сдвигом в миллисекундах
 	{
-		
+		Time result(_hours, _min, _sec, _msec);
+		result.addSecs(ms);
+		return result;
 	}
 	Time addSecs(int s) const // порождает новый объект со сдвигом в секундах
 	{
@@ -292,6 +294,7 @@ protected:
 	
 
 };
+
 
 std::ostream & operator<<(std::ostream &output, const Time tm )
 {

@@ -8,6 +8,9 @@ using namespace std;
 unsigned int main()
 {
 
+	int ki[20];
+
+
 	//cout << 24 + (-1 % 24);
 
 	/*
@@ -30,6 +33,6 @@ unsigned int main()
 	Time kk;
 	Time zz = kk.currentTime();
 
-	cout << zz;
+	cout <<sizeof(ki);
 	cin.get();
 }
