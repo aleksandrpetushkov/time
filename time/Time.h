@@ -13,7 +13,7 @@ public:
 		_sec = 0;
 		_msec = 0;
 	}
-	Time(int const hours, int const min, int const sec, int const msec)
+	Time(int const &hours, int const &min, int const &sec, int const &msec)
 	{
 		_hours = 0;
 		_min = 0;
@@ -172,6 +172,7 @@ public:
 		pos1 = s.find_first_not_of("1234567890", pos);
 		result._hours = atoi(s.substr(pos, pos1 - pos).c_str());
 
+
 		pos = pos = s.find_first_of("123456789", pos1);
 		pos1 = s.find_first_not_of("1234567890", pos);
 		result._min= atoi(s.substr(pos, pos1 - pos).c_str());
@@ -239,7 +240,7 @@ public:
 		}
 	}
 
-	void addSec(const int sec)
+	void addSec(const int &sec)
 	{
 		if (_sec + sec >= 60)
 		{
@@ -260,10 +261,10 @@ public:
 		}
 		else
 		{
-			_sec = sec;
+			_sec += sec;
 		}
 	}
-	void addMsec(const int msec)
+	void addMsec(const int &msec)
 	{
 		if (_msec + msec >= 1000 )
 		{
