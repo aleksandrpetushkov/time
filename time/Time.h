@@ -69,6 +69,8 @@ public:
 		ms += (t.H() - ctm.H())*3600000;
 		ms += (t.M() - ctm.M()) * 60000;
 		ms += (t.S() - ctm.S()) * 1000;
+		ms += (t.Ms() - ctm.Ms());
+		return ms;
 	}
 	int secsTo(const Time & t) const // возвращает кол-во сек до события 
 	{
@@ -77,6 +79,9 @@ public:
 		int s = 0;
 		s += (t.H() - ctm.H()) * 3600;
 		s += (t.M() - ctm.M()) * 60;
+		s += (t.S() - ctm.S());
+		return s;
+
 	}
 	bool setHMS(int h, int m, int s, int ms = 0) // установить новую дату
 	{
