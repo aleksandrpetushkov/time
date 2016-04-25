@@ -31,6 +31,7 @@ public:
 		result.addSecs(ms);
 		return result;
 	}
+
 	Time addSecs(int s) const // порождает новый объект со сдвигом в секундах
 	{
 		Time result(_hours, _min, _sec, _msec);
@@ -38,39 +39,80 @@ public:
 		return result;
 
 	}
+
 	int H() const // возвращает кол-во часов
 	{
 		return _hours;
 	}
+
 	int M() const // возвращает кол-во минут
 	{
 		return _min;
 	}
+
 	int S() const // возвращает кол-во секунд
 	{
 		return _sec;
 	}
+
 	int Ms() const // возвращает кол-во миллисекунд
 	{
 		return _msec;
 	}
 
-	bool isValid() const; // валидна ли дата
+	
 	int msecsTo(const Time & t) const // возвращает кол-во мсек до события
 	{
-		
+		Time ctm;
+		ctm = ctm.currentTime();
+		int ms = 0;
+		ms += (t.H() - ctm.H())*3600000;
+		ms += (t.M() - ctm.M()) * 60000;
+		ms += (t.S() - ctm.S()) * 1000;
 	}
 	int secsTo(const Time & t) const // возвращает кол-во сек до события 
 	{
-		
+		Time ctm;
+		ctm = ctm.currentTime();
+		int s = 0;
+		s += (t.H() - ctm.H()) * 3600;
+		s += (t.M() - ctm.M()) * 60;
 	}
 	bool setHMS(int h, int m, int s, int ms = 0) // установить новую дату
 	{
-		
+		_hours = h;
+		_min = m;
+		_sec = s;
+		_msec = ms;
 	}
 	std::string toString(const std::string & format) const // преобразует в строку, согласно заданному формату
 	{
-		
+		std::stringstream  st;
+		for (int i = 0; i < 4;++i)
+		{
+			switch(format[i])
+			{
+			case'h':
+				st << _hours;
+				break;
+			case'm':
+				st << _min;
+				break;
+			case's':
+				st << _sec;
+				break;
+			case'u':
+				st << _msec;
+				break;
+			}
+			if(i!=3)
+			{
+				st << ":";
+			}
+
+		}
+		//st << _hours << ":" << _min << ":" << _sec << ":" << _msec;
+		return st.str();
 	}
 	bool operator!=(const Time & t) const
 	{

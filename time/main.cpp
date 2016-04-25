@@ -36,8 +36,7 @@ int main(int argc, char* argv[])
 	
 	
 	Time tm(55, 75,0, 30);
-	tm.addSec(1);
-	cout << tm.S() << endl;
+	cout << tm.toString("usmh") << endl;
 	::testing::InitGoogleTest(&argc, argv);
 	RUN_ALL_TESTS();
 	cin.get();
