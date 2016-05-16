@@ -61,7 +61,7 @@ public:
 	}
 
 	
-	int msecsTo(const Time & t) const // возвращает кол-во мсек до события
+	int  msecsTo(const Time & t) const // возвращает кол-во мсек до события
 	{
 		Time ctm;
 		ctm = ctm.currentTime();
@@ -133,6 +133,17 @@ public:
 	}
 	bool operator<(const Time & t) const
 	{
+		
+		if(this->getMs()<t.getMs())
+		{
+			return true;
+		}
+
+		else
+		{
+			return false;
+		}
+		/*
 		if (_hours < t.H())
 		{
 			return true;
@@ -159,6 +170,17 @@ public:
 			}
 		}
 		return false;
+		//*/
+
+	}
+	unsigned int getMs() const
+	{
+		unsigned int ms = 0;
+		ms += _hours * 3600000;
+		ms += _min * 60000;
+		ms += _sec * 1000;
+		ms += _msec;
+		return ms;
 	}
 	bool operator==(const Time & t) const
 	{
